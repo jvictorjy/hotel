@@ -19,7 +19,7 @@ class Model_Preco extends CORE_Model_Abstract
                     ->from($this->_dbTable->getName())
                     ->where('tipo_cliente_id = ?', $data['tipo_cliente_id']);
         
-        if ($diasemana != 0 && $diasemana != 6) {
+        if ($diasemana == 0 && $diasemana == 6) {
             $sql->where("tipo_id = ?", 2);
         } else {
             $sql->where("tipo_id = ?", 1);
