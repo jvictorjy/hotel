@@ -1,0 +1,32 @@
+<div class="title">
+    <h1><?php echo $this->controller; ?></h1>
+    
+    <a class="btn btn btn-info" 
+        href="<?php echo $this->url(array('controller' => 'hoteis', 'action' => 'new')); ?>">
+         Novo
+    </a>
+</div>
+<span>
+    <br /><br /><br /><br />
+    <?php echo $this->messagesFormatter($this->messages); ?>
+</span>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td><strong>Nome</strong></td>
+            <td><strong>Estrelas</strong></td>
+            <td><strong>A&ccedil;&otilde;es</strong></td>
+        </tr>
+    </thead>
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity['nome']; ?></td>
+        <td><?php echo $entity['estrelas']; ?></td>
+        <td>
+            <a class="icon-pencil" href="<?php echo $this->url(array('controller'=>'hoteis','action'=>'edit','id'=>$entity['id'])); ?>" title="Editar"></a>
+            <a class="icon-trash" href="<?php echo $this->url(array('controller'=>'hoteis','action'=>'delete','id'=>$entity['id'])); ?>" title="Excluir"></a>
+        </td>
+    </tr>
+
+    <?php endforeach; ?>
+</table>

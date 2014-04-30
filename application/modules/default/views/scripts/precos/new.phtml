@@ -1,0 +1,26 @@
+<script>
+$(document).ready(function(){
+   $("#valor").money(); 
+});
+</script>
+<div class="title">
+    <h1><?php echo $this->controller; ?></h1>
+    
+    <a class="btn btn" 
+        onClick="history.go(-1)">
+         Voltar
+    </a>
+    <a class="btn btn btn-info" 
+        href="<?php echo $this->url(array('controller' => 'precos', 'action' => 'new')); ?>">
+         Novo
+    </a>
+</div>
+
+<fieldset>
+
+    <legend>Cadastrar Pre&ccedil;o</legend>
+    <br /><br />
+    <?php echo $this->messagesFormatter($this->messages); ?>
+    <?php echo $this->form; ?>
+
+</fieldset>

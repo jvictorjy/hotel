@@ -1,0 +1,78 @@
+<?php
+$urlPattern = $_SERVER['REQUEST_URI'];
+$formatUrl = function ($page) use ($urlPattern) {
+            if (!preg_match('/page/', $urlPattern))
+                return $urlPattern . "/page/" . $page;
+            else
+                return preg_replace('/\d/', $page, $urlPattern);
+        };
+?>
+<center>
+    <div class="pagination pagination-centered">
+        <?php if ($this->pageCount): ?>
+        Mostrando: <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?> de <?php echo $this->totalItemCount; ?> registros
+        <br />
+
+        <ul>
+            <!-- First page link -->
+            <?php if (isset($this->previous)): ?>
+                <li>
+                    <a title="Primeira P&aacute;gina" href="<?php echo $this->url(array('pagina' => $this->first)); ?>">&laquo; Primeira</a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a class="current" title="Primeira P&aacute;gina" href="<?php echo $this->url(array('pagina' => $this->first)); ?>">&laquo; Primeira</a>
+                </li>
+            <?php endif; ?>
+
+            <!-- Link para a p&aacute;gina anterior -->
+            <?php if (isset($this->previous)): ?>
+                <li>
+                    <a title="P&aacute;gina Anterior" href="<?php echo $this->url(array('pagina' => $this->previous)); ?>">&laquo; Anterior</a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a  class="current" title="P&aacute;gina Anterior" href="<?php echo $this->url(array('pagina' => $this->previous)); ?>">&laquo; Anterior</a>
+                </li>
+            <?php endif; ?>
+
+            <!-- Links numerados -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <?php if ($page != $this->current): ?>
+                    <li>
+                        <a title="<?php echo $page; ?>" href="<?php echo $this->url(array('pagina' => $page)); ?>">&nbsp;<?php echo $page; ?></a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a class="current" title="<?php echo $page; ?>" href="<?php echo $this->url(array('pagina' => $page)); ?>">&nbsp;<?php echo $page; ?></a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+            <!-- Link para a Próxima p&aacute;gina -->
+            <?php if (isset($this->next)): ?>
+                <li>
+                    <a title="Pr&oacute;xima P&aacute;gina" href="<?php echo $this->url(array('pagina' => $this->next)); ?>">Pr&oacute;xima &raquo;</a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a class="current" title="Pr&oacute;xima P&aacute;gina" href="<?php echo $this->url(array('pagina' => $this->next)); ?>">Pr&oacute;xima &raquo;</a>
+                </li>
+            <?php endif; ?>
+
+            <!-- Última p&aacute;gina -->
+            <?php if (isset($this->next)): ?>
+                <li>
+                    <a title="&Uacute;ltima P&aacute;gina" href="<?php echo $this->url(array('pagina' => $this->last)); ?>">&Uacute;ltima &raquo;</a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a class="current" title="&Uacute;ltima P&aacute;gina" href="<?php echo $this->url(array('pagina' => $this->last)); ?>">&Uacute;ltima &raquo;</a>
+                </li>
+            <?php endif; ?>
+
+        </ul>
+        
+    <?php endif; ?>
+    </div>
+</center>

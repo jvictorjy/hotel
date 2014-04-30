@@ -1,0 +1,27 @@
+<script>
+$(document).ready(function(){
+   $(".datepicker").datepicker({
+        format: "dd/mm/yyyy"
+    }); 
+});
+</script>
+
+<div class="title">
+    <h1><?php echo $this->controller; ?></h1>
+</div>
+
+<fieldset>
+
+    <legend>Per&iacute;odo</legend>
+    <br /><br />
+    <?php echo $this->messagesFormatter($this->messages); ?>
+    <?php echo $this->form; ?>
+
+</fieldset>
+
+<?php if ($this->hotel) :?>
+<div>
+    O hotel com o menor custo &eacute; <strong><?php echo $this->hotel['nome']; ?></strong> 
+    com o valor de $<strong><?php echo number_format($this->preco, 2); ?></strong> a di&aacute;ria.
+</div>
+<?php endif; ?>

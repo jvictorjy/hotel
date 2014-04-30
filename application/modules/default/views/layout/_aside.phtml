@@ -1,0 +1,52 @@
+<?php 
+$usuario = Zend_Auth::getInstance()->getIdentity(); 
+//Zend_Debug::dump($usuario); 
+//die(); 
+?>
+<div class="bs-docs-example span4">
+    <div class="well" style="max-width: 340px; padding: 8px 0;">
+        <ul class="nav nav-list">
+            <li class="nav-header">---- Menu Ficha Qu&iacute;mica ----</li>
+            <?php if ($usuario->perfil_id != 1) : ?>
+            <li <?php echo ($this->controller == "newficha") ? "class='active'" : "" ; ?>>
+                <a href="<?php echo $this->url(array('controller' => 'produtos', "action" => "new")); ?>">Incluir Ficha Qu&iacute;mica</a>
+            </li>
+            <?php endif; ?>
+            <li <?php echo ($this->controller == "busca") ? "class='active'" : "" ; ?>>
+                <a href="<?php echo $this->url(array('controller' => 'produtos', "action" => "busca")); ?>">Buscar Ficha Qu&iacute;mica</a>
+            </li>
+            <!--<li>
+                <a href="#">Eventos</a>
+            </li>
+            <li>
+                <a href="#">Normas & Legislação</a>
+            </li>
+            <li>
+                <a href="#">Manuais</a>
+            </li>
+            <li>
+                <a href="#">Ficha Química</a>
+            </li>
+            <li>
+                <a href="#">Bibliografia</a>
+            </li>
+            <li>
+                <a href="#">Glossário em Biossegurança</a>
+            </li>
+            <li>
+                <a href="#">Links Interessantes</a>
+            </li>
+            <li>
+                <a href="#">Visualizar na WEB</a>
+            </li>-->
+            <?php if ($usuario->perfil_id == 3) : ?>
+            <li <?php echo ($this->controller == "usuarios") ? "class='active'" : "" ; ?>>
+                <a href="<?php echo $this->url(array('controller' => 'usuarios', "action" => "index")); ?>">Cadastrar Senha</a>
+            </li>
+            <?php endif; ?>
+            <li>
+                <a href="<?php echo $this->url(array('controller' => 'auth', "action" => "logout")); ?>">Sair do Sistema</a>
+            </li>
+        </ul>
+    </div> <!-- /well -->
+</div>
